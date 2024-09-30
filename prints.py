@@ -4,12 +4,14 @@ from helpers import group_employees_by_id
 
 def print_employees(employees, title):
     """Print the attributes of empoyees"""
+    employees.sort(key=lambda emp: emp['id'])
     print("-" * 70)
     print(f"{title}")
     print("-" * 70)
     headers = ["ID", "Name", "Hiring Year", "Age", "Favorite Day", "Salary"]
     row_format = "{:<5} {:<20} {:<12} {:<5} {:<15} {:<10}"
     
+    # employees = employees.sort(key=lambda emp: emp['id'])
     print(row_format.format(*headers))
     print("-" * 70)
     
