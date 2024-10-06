@@ -1,0 +1,139 @@
+Employee Data Management (EDM)
+
+A company has a JSON file employee.json containing data about their employees. Each employee has an ID, name, hiring year, age, favorite day of the week, and salary. Some employees have duplicate data ID. 
+We want to create a command line tool to organize and manage the employees data correctly (run periodicaly to fix duplicate ids, provide requested information about employee(s), etc.) 
+The data is saved in a JSON file.
+
+Part 0: Best Practice
+While building the tool:
+- Use version control (Part 7.3) from the begining of the project. Tru creating branches for each part and merge into main when completed.
+- Try separating logic into distinct modules/files (e.g., one file for json file r/w, another for the menu, ...)
+
+Part 1: Assign New IDs to Employees with Duplicate IDs
+1. Write a script to get and print a collection of unique employees from the file.
+2. Write a function to assign new IDs when duplicate found:
+For all employees with the same ID:
+- Keep the shared ID for the employee who joined the company first.
+- Assign a new ID to the other(s), ensuring there are no duplicates.
+- If they joined in the same year, keep the shared ID for the oldest employee.
+- If they have the same age, choose randomly which employee keeps the shared ID.
+
+Part 2: Employee Promotion
+1. Write a function to return the name of the employee to be promoted: oldest and first to be hired if same age.
+
+Part 3: Work from Home and Rewards
+1. Write a script to return a collection of all 7 days of the week with the list of people who have each day as their favorite day.
+2. Note: People with Saturday and Sunday as their favorite day will not work from home but will receive a reward instead.
+3. How many people are going to be rewarded?
+4. Write a script to return the list of all employees who will be rewarded.
+
+Part 4: Firing and Hiring
+1. The CEO wants to fire 5 employees and hire 3 new ones:
+- Fire all employees who are less than 30 years old, have a favorite day between Monday and Friday, and have been with the company for less than 2 years and have a salary greater than $50k. How many people will be fired? Print their names and remove them from the JSON file.
+- After interviews, 3 people were hired. Add them to the file and assign them unique IDs. You can use the IDs of those fired when possible.
+2. Write functions to fire the employee meeting the firing condition (remove from emoployee.json) and hire the new employees below(add to employee.json)
+
+Name: Bob Esquiz
+Hiring Year: 2024
+Age: 25
+Favorite Day: Monday
+Salary: 50000
+
+Name: Josh Degrand 
+Hiring Year: 2024
+Age: 28
+Favorite Day: Tuesday
+Salary: 55000
+New Hire 3:
+
+Name: Ziland Ronou
+Hiring Year: 2024
+Age: 30
+Favorite Day: Wednesday
+Salary: 60000
+
+Part 5: Console Application
+Write a console application for this company Employee Data Management [EDM]. When lunching the application the menu should be displayed as below:
+╔════════════════════════════════════════════════╗
+║              WELCOME TO EDM                    ║
+║  Your Best Employee Data Management Tool       ║
+╚════════════════════════════════════════════════╝
+
+╔════════════════════════════════════════════════╗
+║               🏠 MAIN MENU                     ║
+║════════════════════════════════════════════════║
+║  1. 📋 List Employee(s)                        ║
+║  2. ✏️  Update Employee                        ║
+║  3. 🎁 Employee(s) to Reward                   ║
+║  4. 🎉 Employee(s) to Promote                  ║
+║  5. 🔥 Employee(s) to Fire                     ║
+║  6. 💻 Employee(s) Working from Home on a Day  ║ 
+║  7. ↩️ Exit                                    ║
+╚════════════════════════════════════════════════╝
+
+   👉 Choose a number to continue...
+
+Submenu: List Employee(s)
+1. All Employees
+2. Employee(s) within Salary Range
+3. Employee(s) within Age Range
+4. Employee(s) by Hiring Year
+5. Employee(s) by Favorite Day
+6. Employee(s) by Name Range
+
+Submenu: Update Employee
+1. Add Employee
+2. Remove Employee
+3. Edit Employee
+
+After each action give option to the user to go back to previous menu, or home page or exit the tool
+What would you like to do next?
+   1. 🔙 Previous Menu
+   2. 🏠 Home
+   3. ↩️  Exit
+
+Menu/Submenu Details:
+- All Employees: Display all employees from the JSON file.
+- Employee(s) within Salary Range: Ask the user for a minimum and/or maximum salary and display all employees whose salaries fall within the specified range.
+- Employee(s) within Age Range: Ask for a minimum and/or maximum age and display employees within that age range.
+- Employee(s) by Hiring Year: Ask for a hiring year and display all employees hired that year.
+- Employee(s) by Favorite Day: Ask for a favorite day (Monday to Sunday) and display employees who have that day as their favorite.
+- Employee(s) by Name Range: Ask for a letter (A to Z) and display employees whose names start with that letter.
+- Add Employee: Ask the user for the employee’s details (ID, name, age, etc.) and update the JSON file with the new employee.
+- Remove Employee: Ask for the name or ID of an employee, remove them from the JSON file.
+- Edit Employee: Ask for the ID or name of an employee, get new details, and update the employee's information in the JSON file.
+- Employee(s) to Reward: Display the list of employees eligible for rewards (based on their favorite day).
+- Employee(s) to Promote: Display the list of employees eligible for promotion.
+- Employee(s) to Fire: Display the list of employees who meet the criteria to be fired.
+- Employee(s) Working from Home on a Specific Day: Ask for a day (Monday to Sunday) and display the employees working from home on that day.
+
+Notes:
+- For each display, include a message explaining the logic behind the result.
+- To implement the different menus, the functions written above will be used. Additional functions may be needed.
+
+PART 6: Periodic Task
+The tool should run periodically in the background to check for duplicate IDs and assign new ones where necessary.
+For this task, there are several option available, but for this homework we will use the python schedule library, which allows to schedule tasks at fixed intervals. 
+Steps:
+- Install schedule Library: Install the schedule library (pip install schedule)
+- Create a Function to Check for Duplicate IDs in the employee list and assigns new ones if necessary. Done in Part 1, question 2.
+- Schedule the Task Periodically: Use python schedule to run the duplicate check function periodically (every 10 seconds) in the background while the tool is running.
+
+PART 7: Deploy and publish EDM tool
+Here we are going to distribute our tool locally and deploy it in the cloud.
+1. Package as a Standalone Executable
+- Package EDM tool into an executable format that can be run on any Windows machines without needing to install Python or any dependencies.
+- Tool to use: python PyInstaller
+2. Create a Python Package for EDM tool and Distribute via PyPI
+- This will allow users to install EDM with pip as other python packages/libraries
+3. Distribute EDM via GitHub
+- Host EDM’s source code in a GitHub repository and allow users to download or clone the repository.
+- Add instructions to a README.md file on how to install dependencies and run the script.
+4.  Run EDM as a Cloud-Based Application
+- Deploy EDM to Azure VM cloud platforms
+
+PART 8: BONUS 
+- Think about edge cases (promotions or firings). For example, what if two employees are tied in every respect for promotion?
+- Add unit test to the tool (Library like unitest or pytest can be used)
+- Data Validation: When needed (Part 1 and Part 4: assigning new IDs and hiring/firing for exemple), try emphasizing input validation. Adding error handling for missing data or invalid input.
+
