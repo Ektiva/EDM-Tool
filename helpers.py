@@ -1,7 +1,10 @@
 from collections import defaultdict
+from read_write_employees import load
 
-from constants import DAYS_OF_WEEK
+from constants import DAYS_OF_WEEK, WEEKENDS
+from constants import WEEKDAYS
 import read_write_employees
+from datetime import datetime
 
 
 def find_max_id(employees):
@@ -69,3 +72,37 @@ def group_by_favorite_day(employees):
             favorite_day_groups[day].append(emp)
             
     return favorite_day_groups
+
+def employees_reward_count(employees):
+    grouped_employees_to_rewards = group_by_favorite_day(employees)
+    count = 0
+    for day in WEEKENDS:
+        number = len(grouped_employees_to_rewards[day])
+        count += number
+    return count
+
+def find_employees_to_reward(employees):
+    grouped_employees_to_rewards = group_by_favorite_day(employees)
+    employees_name = []
+    for day in WEEKENDS:
+        employees_name.extend(grouped_employees_to_rewards[day])
+    return employees_name
+
+# find_employees_to_reward(load('employee.json'))
+
+# def find_employee_to_fire(employees):
+#     emp_to_fire = defaultdict(list)
+#     day = emp['favorite_day']
+#     current_year = int(datetime.now().year)
+#     year_of_service = current_year - int(datetime.now().year)
+
+#     for emp in employees:
+#         if emp['age'] < 30 and year_of_service < 2:
+#            emp_to_fire['age'].append(emp)
+#            print(emp_to_fire)
+
+
+#         # elif emp['age'] == emp_to_fire['age']:
+#         #     if emp['hiring_year'] < emp_to_promote['hiring_year']:
+#         #         emp_to_promote = emp
+#     # return emp_to_fire
