@@ -6,7 +6,7 @@ def print_employees(employees, title):
     """Print the attributes of empoyees"""
     print("-" * 70)
     print(f"{title}")
-    print("-" * 70)
+    print("-" * 70 +"\n")
     headers = ["ID", "Name", "Hiring Year", "Age", "Favorite Day", "Salary"]
     row_format = "{:<5} {:<20} {:<12} {:<5} {:<15} {:<10}"
     

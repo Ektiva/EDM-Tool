@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from constants import DAYS_OF_WEEK
+from constants import DAYS_OF_WEEK, WEEKDAYS
 import read_write_employees
 
 
@@ -68,3 +68,13 @@ def group_by_favorite_day(employees):
             favorite_day_groups[day].append(emp)
             
     return favorite_day_groups
+
+def find_employees_to_fire(employees):
+    fired_emp = []
+
+    for emp in employees:
+        if emp['age'] < 30 and emp['favorite_day'] in WEEKDAYS and 2024 - emp['hiring_year'] < 2 and emp['salary'] > 50000:
+            fired_emp.append(emp)
+    return fired_emp
+
+find_employees_to_fire(read_write_employees.load("employee.json"))
