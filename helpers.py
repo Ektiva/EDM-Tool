@@ -71,10 +71,44 @@ def group_by_favorite_day(employees):
 
 def find_employees_to_fire(employees):
     fired_emp = []
+    remaining_emp = []
 
     for emp in employees:
         if emp['age'] < 30 and emp['favorite_day'] in WEEKDAYS and 2024 - emp['hiring_year'] < 2 and emp['salary'] > 50000:
             fired_emp.append(emp)
-    return fired_emp
+        else:
+           remaining_emp.append(emp) 
+
+    return remaining_emp, fired_emp
 
 find_employees_to_fire(read_write_employees.load("employee.json"))
+
+def get_employees_with_salary_range(employees):
+    min_salary_input = input("Enter minimum salary (leave blank if not applicable): ").strip()
+    max_salary_input = input("Enter maximum salary (leave blank if not applicable): ").strip()
+
+    min_salary = None
+    max_salary = None
+
+    if min_salary_input:
+        min_salary = int(min_salary_input)
+    if max_salary_input:
+        max_salary = int(max_salary_input)
+
+    filtered_employees = []
+    for emp in employees:
+        value = emp['salary']
+        if (min_salary is None or value >= min_salary) and (max_salary is None or value <= max_salary):
+            filtered_employees.append(emp)
+    
+    title = "" 
+    if min_salary is not None and max_salary is not None:
+        title = f"Employee(s) within salary range {min_salary} to {max_salary}" 
+    elif min_salary is not None:
+        title =f"Employee(s) with salary above {min_salary}"
+    elif max_salary is not None:
+        title =f"Employee(s) with salary below {max_salary}"
+    else :
+        title = "All Employees"
+
+    return filtered_employees, title
