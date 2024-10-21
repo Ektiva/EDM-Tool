@@ -112,3 +112,33 @@ def get_employees_with_salary_range(employees):
         title = "All Employees"
 
     return filtered_employees, title
+
+def get_employees_with_age_range(employees): 
+    min_age_input = input("Enter minimum age (leave blank if not applicable): ").strip()
+    max_age_input = input("Enter maximum age (leave blank if not applicable): ").strip()
+
+    min_age = None
+    max_age = None
+
+    if min_age_input:
+        min_age = int(min_age_input)
+    if max_age_input:
+        max_age = int(max_age_input)
+
+    filtered_employees = []
+    for emp in employees:
+        value = emp['age']
+        if (min_age is None or value >= min_age) and (max_age is None or value <= max_age):
+            filtered_employees.append(emp)
+    
+    title = "" 
+    if min_age is not None and max_age is not None:
+        title = f"Employee(s) within age range {min_age} to {max_age}" 
+    elif min_age is not None:
+        title =f"Employee(s) with age above {min_age}"
+    elif max_age is not None:
+        title =f"Employee(s) with age below {max_age}"
+    else :
+        title = "All Employees"
+
+    return filtered_employees, title

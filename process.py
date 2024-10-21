@@ -1,4 +1,4 @@
-from helpers import get_employees_with_salary_range
+from helpers import get_employees_with_age_range, get_employees_with_salary_range
 from post_process import edm_exit, menu_callback
 from prints import display_list_employee_submenu, display_main_menu, print_employees
 import read_write_employees
@@ -33,7 +33,7 @@ def process_list_employee_submenu():
     elif choice == "2":
         employees_with_salary_range(employees)
     elif choice == "3":
-        employees_with_age_range()
+        employees_with_age_range(employees)
     elif choice == "4":
         employees_by_hiring_year()
     elif choice == "5":
@@ -66,8 +66,9 @@ def employees_with_salary_range(employees):
     emp, title = get_employees_with_salary_range(employees)
     print_employees(emp, title)
 
-def employees_with_age_range():
-    print()
+def employees_with_age_range(employees):
+    emp, title = get_employees_with_age_range(employees)
+    print_employees(emp, title)
 
 def employees_by_hiring_year():
     print()
