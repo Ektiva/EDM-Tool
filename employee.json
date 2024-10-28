@@ -17,7 +17,7 @@
     {"id": 16, "name": "Paul Green", "hiring_year": 2011, "age": 52, "favorite_day": "Monday", "salary": 77000},
     {"id": 1, "name": "Quincy Adams", "hiring_year": 2013, "age": 41, "favorite_day": "Tuesday", "salary": 67000},
     {"id": 18, "name": "Rita Baker", "hiring_year": 2016, "age": 34, "favorite_day": "Saturday", "salary": 63000},
-    {"id": 19, "name": "Sam Carter", "hiring_year": 2019, "age": 30, "favorite_day": "Thursday", "salary": 57000},
+    {"id": 19, "name": "Sam Carter", "hiring_year": 2019, "age": 33, "favorite_day": "Thursday", "salary": 57000},
     {"id": 20, "name": "Tina Evans", "hiring_year": 2021, "age": 28, "favorite_day": "Friday", "salary": 52000},
     {"id": 21, "name": "Uma Foster", "hiring_year": 2010, "age": 47, "favorite_day": "Sunday", "salary": 71000},
     {"id": 22, "name": "Victor Garcia", "hiring_year": 2012, "age": 40, "favorite_day": "Tuesday", "salary": 64000},

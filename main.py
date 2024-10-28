@@ -1,6 +1,6 @@
 # from read_write_employees import {load_employee, }
 from constants import DAYS_OF_WEEK, WEEKENDS
-from helpers import assing_new_ids, find_employee_to_promote, find_employees_to_fire, find_max_id, get_employees_with_age_range, group_by_favorite_day, group_employees_by_id
+from helpers import assing_new_ids, find_employee_to_promote, find_employees_to_fire, find_max_id, get_employees_with_age_range, get_employees_with_specific_attribute, group_by_favorite_day, group_employees_by_id
 from prints import print_employees, print_favorite_day, print_grouped_employees
 from process import run_main_menu
 import read_write_employees
@@ -37,6 +37,8 @@ def main():
     ##DRAFT
     # count = our_sum([1,2,3,4,5, 10])
     # print(count)
+    # emp, title = get_employees_with_specific_attribute(read_write_employees.load("employee.json"), "age")
+    # print_employees(emp, title)
 
 if __name__ == '__main__':
     main() 

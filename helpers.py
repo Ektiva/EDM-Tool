@@ -142,3 +142,54 @@ def get_employees_with_age_range(employees):
         title = "All Employees"
 
     return filtered_employees, title
+
+def get_employees_with_attribute_range(employees, attribute): 
+    min_attr_input = input(f"Enter minimum {attribute} (leave blank if not applicable): ").strip()
+    max_attr_input = input(f"Enter maximum {attribute} (leave blank if not applicable): ").strip()
+
+    min_attr = None
+    max_attr = None
+
+    if min_attr_input:
+        min_attr = int(min_attr_input)
+    if max_attr_input:
+        max_attr = int(max_attr_input)
+
+    filtered_employees = []
+    for emp in employees:
+        value = emp[attribute]
+        if (min_attr is None or value >= min_attr) and (max_attr is None or value <= max_attr):
+            filtered_employees.append(emp)
+    
+    title = "" 
+    if min_attr is not None and max_attr is not None:
+        title = f"Employee(s) within {attribute} range {min_attr} to {max_attr}" 
+    elif min_attr is not None:
+        title =f"Employee(s) with {attribute} above {min_attr}"
+    elif max_attr is not None:
+        title =f"Employee(s) with {attribute} below {max_attr}"
+    else :
+        title = "All Employees"
+
+    return filtered_employees, title
+
+def get_employees_with_specific_attribute(employees, attribute):
+    attr_input = input(f"Enter {attribute}: ").strip()
+
+    filtered_employees = [emp for emp in employees if str(emp[attribute]).lower() == attr_input.lower()]
+    # for emp in employees:
+    #     if str(emp[attribute]).lower() == attr_input.lower():
+    #         filtered_employees.append(emp)
+
+    title = f"Employees with {attribute} '{attr_input}'"
+
+    return filtered_employees, title
+
+def get_employees_by_name_initial(employees):
+    attr_input = input(f"Enter the starting character of the name: ").strip()
+
+    filtered_employees = [emp for emp in employees if str(emp['name']).lower().startswith(attr_input)]
+
+    title = f"Employees whose names start with: '{attr_input}'"
+
+    return filtered_employees, title

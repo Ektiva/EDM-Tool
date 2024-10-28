@@ -1,4 +1,4 @@
-from helpers import get_employees_with_age_range, get_employees_with_salary_range
+from helpers import get_employees_by_name_initial, get_employees_with_age_range, get_employees_with_attribute_range, get_employees_with_salary_range, get_employees_with_specific_attribute
 from post_process import edm_exit, menu_callback
 from prints import display_list_employee_submenu, display_main_menu, print_employees
 import read_write_employees
@@ -35,13 +35,13 @@ def process_list_employee_submenu():
     elif choice == "3":
         employees_with_age_range(employees)
     elif choice == "4":
-        employees_by_hiring_year()
+        specific_employees(employees, "hiring_year")
     elif choice == "5":
-        employees_by_favorite_day()
+        specific_employees(employees, "favorite_day")
     elif choice == "6":
-        employee_by_name_range()
+        employee_by_name_range(employees)
     elif choice == "7":
-        run_main_menu
+        return run_main_menu
 
 def process_update_employee_submenu():
     print()
@@ -63,12 +63,14 @@ def list_all_employees(employees):
     menu_callback(process_list_employee_submenu, run_main_menu)
 
 def employees_with_salary_range(employees):
-    emp, title = get_employees_with_salary_range(employees)
+    emp, title = get_employees_with_attribute_range(employees, "salary")
     print_employees(emp, title)
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
 def employees_with_age_range(employees):
-    emp, title = get_employees_with_age_range(employees)
+    emp, title = get_employees_with_attribute_range(employees, "age")
     print_employees(emp, title)
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
 def employees_by_hiring_year():
     print()
@@ -76,6 +78,13 @@ def employees_by_hiring_year():
 def employees_by_favorite_day():
     print()
 
-def employee_by_name_range():
-    print()
+def specific_employees(employees, attribute):
+    emp, title = get_employees_with_specific_attribute(employees, attribute)
+    print_employees(emp, title)
+    menu_callback(process_list_employee_submenu, run_main_menu)
+
+def employee_by_name_range(employees):
+    emp, title = get_employees_by_name_initial(employees)
+    print_employees(emp, title)
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
