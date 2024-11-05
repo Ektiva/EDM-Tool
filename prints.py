@@ -1,9 +1,9 @@
-
-from helpers import group_employees_by_id
-
-
 def print_employees(employees, title):
     """Print the attributes of empoyees"""
+
+    if not isinstance(employees, list):
+        employees = [employees] 
+        
     print("-" * 70)
     print(f"{title}: Showing {len(employees)} Result(s)")
     print("-" * 70 +"")
@@ -12,9 +12,6 @@ def print_employees(employees, title):
     
     print(row_format.format(*headers))
     print("-" * 70)
-
-    if not isinstance(employees, list):
-        employees = [employees] 
 
     # employees.sort(key=lambda emp: emp['id'])
     sorted_employees = sorted(employees, key=lambda emp: emp['id'])
@@ -58,6 +55,15 @@ List Employee(s)
 5. Employee(s) by Favorite Day
 6. Employee(s) by Name Range
 7. Return to Main Menu
+""")
+
+def display_update_employee_submenu():
+    print("""
+Update Employee
+1. Add Employee
+2. Remove Employee
+3. Edit Employee
+4. Return to Main Menu
 """)
 
     

@@ -1,6 +1,8 @@
 from collections import defaultdict
 
 from constants import DAYS_OF_WEEK, WEEKDAYS
+from prints import print_employees
+from read_write_employees import update
 import read_write_employees
 
 
@@ -193,3 +195,78 @@ def get_employees_by_name_initial(employees):
     title = f"Employees whose names start with: '{attr_input}'"
 
     return filtered_employees, title
+
+def add_employee(employees):
+    new_employee = {}
+
+    new_employee['id'] = int(input("Enter Employee ID: "))
+
+    name = input("Enter Employee Name: ")
+    new_employee['name'] = name
+
+    new_employee['age'] = int(input("Enter Employee Age: "))
+    new_employee['hiring_year'] = int(input("Enter Employee Hiring Year: "))
+    new_employee['favorite_day'] = input("Enter Employee Favorite Day: ")
+    new_employee['salary'] = int(input("Enter Employee Salary: "))
+
+    employees.append(new_employee)
+    update(employees, "employee.json")
+
+    print(f"Employee {name} has been added successfully.")
+    
+    return employees
+
+def remove_employee(employees):
+    employee_to_remove = search_employee(employees)
+
+    if employee_to_remove:
+        employees.remove(employee_to_remove)
+        update(employees, "employee.json")
+        print(f"Employee {employee_to_remove['name']} has been removed successfully.")
+    else:
+        print("Employee not found.")
+    
+    return employees
+
+def edit_employee(employees):
+    employee_to_edit = search_employee(employees)
+    
+    if not employee_to_edit:
+        print("Employee not found.")
+        return employees
+    
+    # Display the employee to edit
+    print_employees(employee_to_edit, "Employee to Edit")
+
+    # Get the attribute to edit
+    attribute_to_edit = input("Enter the attribute to edit (Name, Age, Hiring Year, Favorite Day, Salary): ").strip().lower()
+    
+    if attribute_to_edit not in ['id', 'name', 'age', 'hiring year', 'favorite day', 'salary']:
+        print("Invalid attribute.")
+        return edit_employee(employees)
+    
+    if attribute_to_edit in ['id', 'age', 'hiring year', 'salary']:
+        employee_to_edit[attribute_to_edit] = int(input(f"Enter new {attribute_to_edit}: "))
+    else:
+        employee_to_edit[attribute_to_edit.replace(" ", "_")] = input(f"Enter new {attribute_to_edit}: ")
+    
+    update(employees, "employee.json")
+    print(f"Employee {employee_to_edit['name']} has been updated successfully.")
+
+    return employees
+
+def search_employee(employees):
+    employee = None
+    choice = input("Search Employee by ID or Name? (Enter 'ID' or 'Name'):\n").strip().lower()
+
+    if choice == "id":
+        employee_name = int(input("Enter Employee ID to search: "))
+        employee = next((emp for emp in employees if emp['id'] == employee_name), None)
+    elif choice == "name":
+        employee_name = input("Enter Employee Name to search: ")
+        employee = next((emp for emp in employees if emp['name'] == employee_name), None)
+    else:
+        print("\nInvalid choice. Please enter 'ID' or 'Name'.")
+        return search_employee(employees)
+    
+    return employee
