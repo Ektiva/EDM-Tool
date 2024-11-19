@@ -31,7 +31,7 @@ def group_employees_by_id(employees):
 
     return id_groups
 
-def assing_new_ids(employees):
+def assign_new_ids(employees):
     new_employees = []
     max_id = find_max_id(employees)
     id_groups = group_employees_by_id(employees)
@@ -49,6 +49,9 @@ def assing_new_ids(employees):
                     new_employees.append(emp)
         else:
             new_employees.append(emp_list[0])
+
+    update(new_employees, "employee.json")        
+
     return new_employees
 
 def find_employee_to_promote(employees):
