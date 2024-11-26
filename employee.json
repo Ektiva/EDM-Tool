@@ -448,6 +448,14 @@
         "salary": 100000
     },
     {
+        "id": 60,
+        "name": "Dave",
+        "age": 55,
+        "hiring_year": 2020,
+        "favorite_day": "Monday",
+        "salary": 200000
+    },
+    {
         "id": 58,
         "name": "Xander King",
         "hiring_year": 2021,
