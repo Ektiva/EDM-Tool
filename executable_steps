@@ -1,0 +1,10 @@
+To create an executable in Python
+1- Install the package pyinstaller
+pip install pyinstaller
+
+2- Create the executable
+pyinstaller --onefile --add-data "employee.json:." main.py
+
+3- Run the executable
+The executable is saved into the dict folder as main.exe
+navigate to that location and run it (double click)

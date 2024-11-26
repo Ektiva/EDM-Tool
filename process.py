@@ -1,4 +1,4 @@
-from helpers import add_employee, edit_employee, get_employees_by_name_initial, get_employees_with_age_range, get_employees_with_attribute_range, get_employees_with_salary_range, get_employees_with_specific_attribute, remove_employee
+from helpers import add_employee, edit_employee, find_employee_to_promote, find_employees_to_fire, get_employees_by_name_initial, get_employees_with_age_range, get_employees_with_attribute_range, get_employees_with_salary_range, get_employees_with_specific_attribute, remove_employee
 from post_process import edm_exit, menu_callback
 from prints import display_list_employee_submenu, display_main_menu, display_update_employee_submenu, print_employees
 import read_write_employees
@@ -7,25 +7,25 @@ import read_write_employees
 def run_main_menu():
     display_main_menu()
     choice = input("👉 Choose a number to continue...\n").strip()
+    employees = read_write_employees.load("employee.json")
 
     if choice == "1":
-        process_list_employee_submenu()
+        process_list_employee_submenu(employees)
     elif choice == "2":
-        process_update_employee_submenu()
+        process_update_employee_submenu(employees)
     elif choice == "3":
-        display_employee_to_reward()
+        display_employee_to_reward(employees)
     elif choice == "4":
-        display_employee_to_promote()
+        display_employee_to_promote(employees)
     elif choice == "5":
-        display_employee_to_fire()
+        display_employee_to_fire(employees)
     elif choice == "6":
-        display_employee_working_from_home()
+        display_employee_working_from_home(employees)
     elif choice == "7":
         edm_exit()
 
-def process_list_employee_submenu():
+def process_list_employee_submenu(employees):
     display_list_employee_submenu()
-    employees = read_write_employees.load("employee.json")
     
     choice = input("👉 Enter your choice...\n").strip()
     if choice == "1":
@@ -43,9 +43,8 @@ def process_list_employee_submenu():
     elif choice == "7":
         return run_main_menu
 
-def process_update_employee_submenu():
+def process_update_employee_submenu(employees):
     display_update_employee_submenu()
-    employees = read_write_employees.load("employee.json")
     choice = input("👉 Enter your choice...\n").strip()
 
     if choice == "1":
@@ -60,16 +59,20 @@ def process_update_employee_submenu():
         print("\n Invalid choice. Please try again.")
         return process_update_employee_submenu()
     
-def display_employee_to_reward():
+def display_employee_to_reward(employees):
     print()
 
-def display_employee_to_promote():
-    print()
+def display_employee_to_promote(employees):
+    employee_to_promote = find_employee_to_promote(employees)
+    print_employees(employee_to_promote, "List of Employees to promote")
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
-def display_employee_to_fire():
-    print()
+def display_employee_to_fire(employees):
+    remaining_emp, employee_to_fire = find_employees_to_fire(employees)
+    print_employees(employee_to_fire, "List of Employees to Fire")
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
-def display_employee_working_from_home():
+def display_employee_working_from_home(employees):
     print()
 
 def list_all_employees(employees):
