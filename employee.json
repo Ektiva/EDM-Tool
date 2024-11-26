@@ -393,6 +393,14 @@
     },
     {
         "id": 45,
+        "name": "testing",
+        "age": 65,
+        "hiring_year": 2005,
+        "favorite_day": "Thursday",
+        "salary": 80000
+    },
+    {
+        "id": 59,
         "name": "Sam Foster",
         "hiring_year": 2020,
         "age": 25,
@@ -433,6 +441,14 @@
     },
     {
         "id": 50,
+        "name": "FranNgui",
+        "age": 67,
+        "hiring_year": 2001,
+        "favorite_day": "Friday",
+        "salary": 100000
+    },
+    {
+        "id": 58,
         "name": "Xander King",
         "hiring_year": 2021,
         "age": 27,

@@ -1,9 +1,10 @@
 # from read_write_employees import {load_employee, }
 from constants import DAYS_OF_WEEK, WEEKENDS
-from helpers import assing_new_ids, find_employee_to_promote, find_employees_to_fire, find_max_id, get_employees_with_age_range, get_employees_with_specific_attribute, group_by_favorite_day, group_employees_by_id
+from helpers import assign_new_ids, find_employee_to_promote, find_employees_to_fire, find_max_id, get_employees_with_age_range, get_employees_with_specific_attribute, group_by_favorite_day, group_employees_by_id
 from prints import print_employees, print_favorite_day, print_grouped_employees
 from process import run_main_menu
 import read_write_employees
+from scheduler1 import start_background_scheduler
 
 def main():
     employees = read_write_employees.load("employee.json")
@@ -32,6 +33,8 @@ def main():
     # print_employees(remaining_emp, "Remaining Employees: ")
 
     ## PART 5: CONSOLE APP
+
+    start_background_scheduler()
     run_main_menu()
 
     ##DRAFT
