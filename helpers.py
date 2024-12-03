@@ -65,6 +65,23 @@ def find_employee_to_promote(employees):
                 emp_to_promote = emp
     return emp_to_promote
 
+
+def find_employee_to_reward(employees):
+    emp_by_day = group_by_favorite_day(employees)
+    emp_to_reward = emp_by_day["Saturday"] + emp_by_day["Sunday"]
+
+    return emp_to_reward
+
+
+def find_employee_WFH(employees):
+    WFH_day_input = input("Enter WFH day (from Monday to Friday): ").strip().capitalize()
+
+    emp_by_day = group_by_favorite_day(employees)
+    emp_WFH = emp_by_day[WFH_day_input]
+
+    return emp_WFH, WFH_day_input
+
+
 def group_by_favorite_day(employees):
     favorite_day_groups = defaultdict(list)
     for emp in employees:

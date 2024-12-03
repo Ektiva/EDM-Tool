@@ -1,4 +1,4 @@
-from helpers import add_employee, edit_employee, find_employee_to_promote, find_employees_to_fire, get_employees_by_name_initial, get_employees_with_age_range, get_employees_with_attribute_range, get_employees_with_salary_range, get_employees_with_specific_attribute, remove_employee
+from helpers import add_employee, edit_employee, find_employee_WFH, find_employee_to_promote, find_employee_to_reward, find_employees_to_fire, get_employees_by_name_initial, get_employees_with_age_range, get_employees_with_attribute_range, get_employees_with_salary_range, get_employees_with_specific_attribute, remove_employee
 from post_process import edm_exit, menu_callback
 from prints import display_list_employee_submenu, display_main_menu, display_update_employee_submenu, print_employees
 import read_write_employees
@@ -20,7 +20,7 @@ def run_main_menu():
     elif choice == "5":
         display_employee_to_fire(employees)
     elif choice == "6":
-        display_employee_working_from_home(employees)
+        display_employee_WFH(employees)
     elif choice == "7":
         edm_exit()
 
@@ -60,8 +60,15 @@ def process_update_employee_submenu(employees):
         return process_update_employee_submenu()
     
 def display_employee_to_reward(employees):
-    print()
+    employee_to_reward = find_employee_to_reward(employees)
+    print_employees(employee_to_reward, "List of Employees to reward")
+    menu_callback(process_list_employee_submenu, run_main_menu)
 
+def display_employee_WFH(employees):
+    emp_WFH, WFH_day = find_employee_WFH(employees)
+    print_employees(emp_WFH, f"List of Employees WFH on {WFH_day}" )
+    menu_callback(process_list_employee_submenu, run_main_menu)    
+    
 def display_employee_to_promote(employees):
     employee_to_promote = find_employee_to_promote(employees)
     print_employees(employee_to_promote, "List of Employees to promote")
@@ -71,9 +78,6 @@ def display_employee_to_fire(employees):
     remaining_emp, employee_to_fire = find_employees_to_fire(employees)
     print_employees(employee_to_fire, "List of Employees to Fire")
     menu_callback(process_list_employee_submenu, run_main_menu)
-
-def display_employee_working_from_home(employees):
-    print()
 
 def list_all_employees(employees):
     print_employees(employees, "List of Employees")

@@ -23,9 +23,9 @@ def main():
     # print_employees(employee_to_promote, "Employee To Promote:")
 
     ## PART 3    
-    # favorite_day_groups = group_by_favorite_day(employees)
-    # print(favorite_day_groups)
-    # print_favorite_day(favorite_day_groups, WEEKENDS)
+    #favorite_day_groups = group_by_favorite_day(employees)
+    #print(favorite_day_groups)
+    #print_favorite_day(favorite_day_groups, WEEKENDS)
 
     ## PART 4
     # employees_to_fire, remaining_emp = find_employees_to_fire(employees)
